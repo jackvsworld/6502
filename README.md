@@ -1,2 +1,2 @@
 # 6502
-An emulator for the 6502 microprocessor.
+MR6503 is an emulator for the 6502 microprocessor.
