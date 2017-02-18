@@ -1,0 +1,56 @@
+{'dpc':[
+/* Y/SB        */[1, function (cpu) { cpu.sb = cpu.y; }],
+/* SB/Y        */[1, function (cpu) { cpu.y = cpu.sb; }],
+/* X/SB        */[1, function (cpu) { cpu.sb = cpu.x; }],
+/* SB/X        */[1, function (cpu) { cpu.x = cpu.sb; }],
+
+/* S/SB        */[1, function (cpu) { cpu.sb = cpu.s; }],
+/* S/ADL       */[1, function (cpu) { cpu.adl = cpu.s; }],
+/* SB/S        */[1, function (cpu) { cpu.s = cpu.sb; }],
+/* S/S         */[1, function (cpu) { cpu.s = cpu.s; }],
+
+/* NDB/ADD     */[1, function (cpu) { cpu.bi = ~cpu.db; }],
+/* DB/ADD      */[1, function (cpu) { cpu.bi = cpu.db; }],
+/* ADL/ADD     */[1, function (cpu) { cpu.bi = cpu.adl; }],
+/* SB/ADD      */[1, function (cpu) { cpu.ai = cpu.sb; }],
+
+/* 0/ADD       */[1, function (cpu) { cpu.ai = 0x00; }],
+/* ORS         */[0, function (cpu) { cpu.add = (cpu.ai | cpu.bi); }],
+/* SRS         */[0, function (cpu) { cpu.add = (cpu.ai >>> 1); }],
+/* ANDS        */[0, function (cpu) { cpu.add = (cpu.ai & cpu.bi); }],
+
+/* EORS        */[0, function (cpu) { cpu.add = (cpu.ai ^ cpu.bi); }],
+/* SUMS        */[0, function (cpu) { cpu.add = (cpu.ai + cpu.bi + cpu.addc); }],
+/* DAA         */[0, function (cpu) {/* TODO: BCD */}],
+/* ADD/SB7     */[0, function (cpu) { cpu.sb7 = cpu.add; }],
+
+/* ADD/SB(0-6) */[0, function (cpu) { cpu.sb06 = cpu.add; }],
+/* ADD/ADL     */[0, function (cpu) { cpu.adl = cpu.add; }],
+/* DSA         */[0, function (cpu) {/* TODO: BCD */}],
+/* SB/AC       */[1, function (cpu) { cpu.a = cpu.sb; }],
+
+/* AC/SB       */[1, function (cpu) { cpu.sb = cpu.a; }],
+/* SB/DB       */[0, function (cpu) { cpu.db = cpu.sb; }],
+/* AC/DB       */[0, function (cpu) { cpu.db = cpu.a; }],
+/* SB/ADH      */[0, function (cpu) { cpu.adh = cpu.sb; }],
+
+/* 0/ADH0      */[0, function (cpu) { cpu.adh &= 0xfe; }],
+/* 0/ADH(1-7)  */[0, function (cpu) { cpu.adh &= 0x80; }],
+/* ADH/PCH     */[1, function (cpu) { cpu.pch = cpu.adh; }],
+/* PCH/PCH     */[1, function (cpu) { cpu.pch = cpu.pch; }],
+
+/* PCH/ADH     */[0, function (cpu) { cpu.adh = cpu.pch; }],
+/* PCH/DB      */[0, function (cpu) { cpu.db = cpu.pch; }],
+/* PCLC        */[1, function (cpu) {/* FIXME */}],
+/* PCHC        */[1, function (cpu) {/* FIXME */}],
+
+/* I/PC        */[1, function (cpu) {/* FIXME */}],
+/* PCL/DB      */[0, function (cpu) { cpu.db = cpu.pcl; }],
+/* PCL/ADL     */[0, function (cpu) { cpu.adl = cpu.pcl; }],
+/* PCL/PCL     */[1, function (cpu) { cpu.pcl = cpu.pcl; }],
+
+/* ADL/PCL     */[1, function (cpu) { cpu.pcl = cpu.adl; }],
+/* DL/ADL      */[0, function (cpu) { cpu.adl = cpu.dl; }],
+/* DL/ADH      */[0, function (cpu) { cpu.adh = cpu.dl; }],
+/* DL/DB       */[0, function (cpu) { cpu.db = cpu.dl; }
+]
